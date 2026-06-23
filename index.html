@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Fridge</title>
+  <meta name="theme-color" content="#0a7a43">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Smart Fridge">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="top-bar">
+      <div>
+        <p class="eyebrow">Twoja lodowka</p>
+        <h1>Smart Fridge</h1>
+      </div>
+      <button class="icon-button primary" id="openAdd" aria-label="Dodaj produkt">+</button>
+    </header>
+
+    <section class="summary-grid" aria-label="Podsumowanie">
+      <article class="summary-tile">
+        <span id="totalCount">0</span>
+        <p>produkty</p>
+      </article>
+      <article class="summary-tile warning">
+        <span id="soonCount">0</span>
+        <p>blisko terminu</p>
+      </article>
+      <article class="summary-tile danger">
+        <span id="expiredCount">0</span>
+        <p>po terminie</p>
+      </article>
+    </section>
+
+    <section class="controls" aria-label="Wyszukiwanie i filtry">
+      <input id="searchInput" type="search" placeholder="Szukaj produktu">
+      <div class="segments" role="tablist" aria-label="Filtr produktow">
+        <button class="segment active" data-filter="all">Wszystkie</button>
+        <button class="segment" data-filter="soon">Blisko terminu</button>
+        <button class="segment" data-filter="expired">Przeterminowane</button>
+      </div>
+    </section>
+
+    <section class="list-section" aria-label="Lista produktow">
+      <div id="foodList" class="food-list"></div>
+      <div id="emptyState" class="empty-state" hidden>
+        <div class="empty-icon">SF</div>
+        <h2>Brak produktow</h2>
+        <p>Dodaj pierwszy produkt i pilnuj terminow waznosci.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="foodDialog">
+    <form method="dialog" class="food-form" id="foodForm">
+      <header>
+        <h2 id="dialogTitle">Dodaj produkt</h2>
+        <button class="icon-button ghost" value="cancel" aria-label="Zamknij">x</button>
+      </header>
+
+      <input type="hidden" id="itemId">
+
+      <section class="barcode-box" aria-label="Kod kreskowy">
+        <label>
+          Kod kreskowy
+          <input id="barcodeInput" type="text" inputmode="numeric" placeholder="np. 5900783000424">
+        </label>
+        <div class="barcode-actions">
+          <button class="secondary neutral" type="button" id="lookupButton">Pobierz dane</button>
+          <button class="secondary neutral" type="button" id="scanButton">Skanuj</button>
+          <button class="secondary neutral" type="button" id="photoScanButton">Zdjecie kodu</button>
+        </div>
+        <input id="photoScanInput" type="file" accept="image/*" capture="environment" hidden>
+        <p class="lookup-status" id="lookupStatus" role="status"></p>
+      </section>
+
+      <section class="scanner-panel" id="scannerPanel" hidden>
+        <video id="scannerVideo" playsinline muted></video>
+        <canvas id="scannerCanvas" hidden></canvas>
+        <button class="secondary neutral" type="button" id="stopScanButton">Zamknij skaner</button>
+      </section>
+
+      <label>
+        Nazwa produktu
+        <input id="nameInput" type="text" required placeholder="np. Jogurt naturalny">
+      </label>
+
+      <label>
+        Ilosc
+        <input id="quantityInput" type="text" placeholder="np. 2 szt.">
+      </label>
+
+      <label>
+        Data waznosci
+        <input id="dateInput" type="date" required>
+      </label>
+
+      <label>
+        Kategoria
+        <select id="categoryInput">
+          <option>Nabial</option>
+          <option>Mieso</option>
+          <option>Warzywa</option>
+          <option>Owoce</option>
+          <option>Napoje</option>
+          <option>Gotowe dania</option>
+          <option>Inne</option>
+        </select>
+      </label>
+
+      <footer>
+        <button class="secondary" type="button" id="deleteButton" hidden>Usun</button>
+        <button class="primary action" type="submit">Zapisz</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>
