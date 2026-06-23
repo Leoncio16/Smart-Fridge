@@ -1,0 +1,416 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --border: #dedee3;
+  --green: #2f8f4e;
+  --yellow: #b8860b;
+  --red: #c9342f;
+  --accent: #0a7a43;
+  --shadow: 0 18px 55px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f7faf8 0%, var(--bg) 38%);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 4px 18px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 34px;
+  line-height: 1.08;
+}
+
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icon-button.primary,
+.primary.action {
+  background: var(--accent);
+  color: white;
+}
+
+.icon-button.primary {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.icon-button.ghost {
+  background: #f0f0f2;
+  color: var(--muted);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 6px 0 16px;
+}
+
+.summary-tile {
+  min-width: 0;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.summary-tile span {
+  display: block;
+  font-size: 26px;
+  font-weight: 750;
+}
+
+.summary-tile p {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.summary-tile.warning span {
+  color: var(--yellow);
+}
+
+.summary-tile.danger span {
+  color: var(--red);
+}
+
+.controls {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: grid;
+  gap: 10px;
+  padding: 10px 0 14px;
+  background: rgba(245, 245, 247, 0.92);
+  backdrop-filter: blur(18px);
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  color: var(--text);
+}
+
+.segments {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #e9e9ed;
+}
+
+.segment {
+  min-height: 34px;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.segment.active {
+  background: white;
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.food-list {
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.food-row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  min-height: 72px;
+  padding: 12px 14px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: white;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.food-row:last-child {
+  border-bottom: 0;
+}
+
+.status-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.food-main {
+  min-width: 0;
+}
+
+.food-name {
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.food-meta,
+.food-date {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.food-side {
+  text-align: right;
+}
+
+.food-days {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.fresh {
+  color: var(--green);
+}
+
+.soon {
+  color: var(--yellow);
+}
+
+.critical {
+  color: var(--red);
+}
+
+.fresh-bg {
+  background: var(--green);
+}
+
+.soon-bg {
+  background: var(--yellow);
+}
+
+.critical-bg {
+  background: var(--red);
+}
+
+.empty-state {
+  padding: 46px 18px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 14px;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.empty-state h2 {
+  margin-bottom: 6px;
+  color: var(--text);
+  font-size: 21px;
+}
+
+dialog {
+  width: min(440px, calc(100% - 24px));
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.food-form {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.food-form header,
+.food-form footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.food-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.food-form label input,
+.food-form label select {
+  color: var(--text);
+}
+
+.food-form footer {
+  margin-top: 4px;
+}
+
+.secondary,
+.primary.action {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.secondary {
+  background: #f0f0f2;
+  color: var(--red);
+}
+
+.secondary.neutral {
+  color: var(--text);
+}
+
+.barcode-box {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.barcode-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.lookup-status {
+  min-height: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.lookup-status.error {
+  color: var(--red);
+}
+
+.lookup-status.success {
+  color: var(--green);
+}
+
+.scanner-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.scanner-panel[hidden] {
+  display: none;
+}
+
+#scannerVideo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  background: #111;
+  object-fit: cover;
+}
+
+#html5Reader {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+#html5Reader:empty {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .segments {
+    grid-template-columns: 1fr;
+  }
+
+  .food-row {
+    grid-template-columns: 14px 1fr;
+  }
+
+  .food-side {
+    grid-column: 2;
+    text-align: left;
+  }
+}
