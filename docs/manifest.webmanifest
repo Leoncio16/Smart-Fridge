@@ -1,9 +1,0 @@
-{
-  "name": "Smart Fridge",
-  "short_name": "Smart Fridge",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#f5f5f7",
-  "theme_color": "#0a7a43",
-  "icons": []
-}
